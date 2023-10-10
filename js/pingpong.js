@@ -1,11 +1,14 @@
 (function($){
 	var pingpong = {
- scoreA : 0, // score for player A
- scoreB : 0, // score for player B
+  // score for player B
  // existing pingpong data goes here.
 }
  // data definition
  var pingpong = {
+
+ scoreA : 0,
+ scoreB : 0,
+ 
  paddleA: {
  x: 50,
  y: 50,
@@ -31,6 +34,9 @@
  directionY: 1
  }
  };
+
+ let scoreA = 0;
+ let scoreB = 0;
 
  function ballHitsTopBottom() {
  var y = pingpong.ball.y + pingpong.ball.speed *
@@ -89,6 +95,7 @@ function playerAWin() {
  pingpong.ball.directionX = -1;
  // player B lost.
 pingpong.scoreA += 1;
+scoreA += 1;
 $("#score-a").text(pingpong.scoreA);
 
 }
@@ -99,6 +106,7 @@ function playerBWin() {
  pingpong.ball.directionX = 1;
  // player A lost.
 pingpong.scoreB += 1;
+scoreB += 1;
 $("#score-b").text(pingpong.scoreB);
 
 }

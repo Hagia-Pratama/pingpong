@@ -1,5 +1,5 @@
 <?php  
-	$koneksi = new mysqli("localhost","root","","db_leaderboardpingong");
+	$koneksi = new mysqli("localhost","root","","leaderboard");
 
 
 	if(!$koneksi){

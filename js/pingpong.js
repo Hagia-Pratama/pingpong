@@ -5,8 +5,7 @@
 }
  // data definition
  var pingpong = {
-
- scoreA : 0,
+  scoreA : 0,
  scoreB : 0,
  
  paddleA: {
@@ -34,7 +33,7 @@
  directionY: 1
  }
  };
-
+ 
  let scoreA = 0;
  let scoreB = 0;
 
@@ -112,10 +111,10 @@ $("#score-b").text(pingpong.scoreB);
 }
 
 function updateScore() {
-            document.getElementById("score-a").textContent = scoreA;
-            document.getElementById("score-b").textContent = scoreB;
+  ocument.getElementById("score-a").textContent = scoreA;
+  document.getElementById("score-b").textContent = scoreB;
+  document.getElementById("poin").textContent = Poin;
         }
-
 
 function moveBall() {
  // reference useful varaibles
@@ -193,13 +192,23 @@ function timer() {
 }
 
 function updateTimer() {
-  timeLeft = timeLeft - 1;
-  if(timeLeft >= 0)
+  timeLeft = timeLeft - 2;
+  if(timeLeft >= 0){
     $('#timer').html(timeLeft);
-  else {
+  } else {
     gameOver();
   }
+  
 }
+//function updateTimer() {
+  //document.getElementById("countdown").textContent = timeLeft;
+  //if (timeLeft <= 0) {
+    //  clearInterval(timerInterval);
+      //document.getElementById("startButton").disabled = false;
+      // Redirect ke link lain saat waktu habis (ganti URL sesuai kebutuhan)
+      //window.location.href = 'Leaderboard.php';
+  //}
+//}
 init();
 
 

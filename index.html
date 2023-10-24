@@ -14,11 +14,12 @@
     </header>
     <div id="timer">
         <p>Waktu tersisa: <span id="countdown">10</span> detik</p>
+        <input id="username" type="text" placeholder="username">
         <button id="startButton">Mulai</button>
-        <button id="resetButton"><a href="index.html">Reset</a></button>
+       <button id="resetButton"><a href="index.html">Reset</a></button>
     </div>
 
-    <div class="scoreHeading" id="scoreHeading">Score</div>
+<div class="scoreHeading" id="scoreHeading">Score</div>
 
     <div id="scores" class="score">
         <div class="playerSection">
@@ -37,11 +38,34 @@
         // Fungsi untuk memperbarui tampilan timer
         function updateTimer() {
             document.getElementById("countdown").textContent = timeLeft;
+            
+            
             if (timeLeft <= 0) {
+                //console.log(timeLeft);
                 clearInterval(timerInterval);
                 document.getElementById("startButton").disabled = false;
-                // Redirect ke link lain saat waktu habis (ganti URL sesuai kebutuhan)
-                window.location.href = 'Leaderboard.php';
+                //variabe; == score == user
+                //window.location.href ='insert-score.php?user=xxx&score=666'
+                let record = {
+                    'username': $("#username").val(),
+                    'scorepemain': parseInt($("#score-a").text()),
+                    'scoremusuh': parseInt($("#score-b").text())
+                };
+
+                $.ajax({
+                    url: 'create.php', // Replace with your server endpoint
+                    method: 'POST',
+                    data: record, // Data to send to the server
+                    success: function (response) {
+                        // Handle the server response if needed
+                        console.log(record);
+                        location.reload();
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle errors if any
+                        console.log('SUBMIT FAILED');
+                    }
+                });
             }
         }
 
@@ -50,7 +74,8 @@
             document.getElementById("startButton").disabled = true;
             timerInterval = setInterval(function () {
                 timeLeft--;
-                updateTimer();
+                //console.log('score A:' +scoreA);
+                updateTimer(); //clearInterval(timerInterval);
             }, 1000); // Memperbarui setiap 1 detik
         }
 
@@ -69,9 +94,9 @@
         // Memperbarui tampilan awal timer
         updateTimer();
 
-        // Variabel untuk menyimpan skor
+       // Variabel untuk menyimpan skor
        //  let scoreA = 0;
-       //  let scoreB = 0;
+       //  let scoreB = 0; 
 
        //  // Fungsi untuk memperbarui tampilan skor
         
@@ -89,7 +114,6 @@
 
        //  });
     </script>
-
     <div id="game">
         <div id="playground">
             <div class="paddle-hand right"></div>
